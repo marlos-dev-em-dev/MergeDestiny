@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'com.marlos.selfupdatetest'
+    compileSdk 36
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId 'com.marlos.selfupdatetest'
+        minSdk 23
+        targetSdk 35
+        versionCode 2
+        versionName '1.0.1'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(providers.gradleProperty('SELFUPDATE_STORE_FILE').get())
+            storePassword providers.gradleProperty('SELFUPDATE_STORE_PASSWORD').get()
+            keyAlias providers.gradleProperty('SELFUPDATE_KEY_ALIAS').get()
+            keyPassword providers.gradleProperty('SELFUPDATE_KEY_PASSWORD').get()
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation project(':selfupdate')
+}

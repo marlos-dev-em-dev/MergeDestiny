@@ -1,0 +1,12 @@
+plugins { id 'com.android.library' }
+
+android {
+    namespace 'com.marlos.selfupdate'
+    compileSdk 36
+
+    defaultConfig { minSdk 23 }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.15.0'
+}
